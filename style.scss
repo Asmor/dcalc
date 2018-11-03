@@ -1,0 +1,181 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: sans-serif;
+}
+
+html, body {
+	height: 100%;
+}
+
+@mixin fill {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+.calculator {
+	// @include fill;
+	// position: fixed;
+	height: 100%;
+	width: 100%;
+	background-color: black;
+
+	display: grid;
+	column-gap: 5px;
+	grid-template-rows: 1fr 1fr;
+	grid-template-columns: 1fr;
+	grid-template-areas:
+		"display"
+		"keypad"
+	;
+}
+
+.science, .keypad {
+	display: grid;
+	column-gap: 5px;
+	row-gap: 5px;
+	background-color: black;
+}
+
+.keypad {
+	grid-area: keypad;
+	grid-template-rows: 1fr 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-template-areas:
+		"key-7 key-8 key-9 key-minus"
+		"key-4 key-5 key-6 key-plus"
+		"key-1 key-2 key-3 key-enter"
+		"key-d key-0 key-clear key-enter"
+	;
+}
+
+.science {
+	display: none;
+	grid-area: science;
+	grid-template-rows: 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-areas:
+		"key-keep key-highest key-exploding"
+		"key-keep key-middle key-minus"
+		"key-drop key-lowest key-delete"
+	;
+
+	.key[data-key="minus"] {
+		grid-area: key-minus;
+	}
+}
+
+.display {
+	grid-area: display;
+	background-color: blue;
+	display: grid;
+	grid-template-rows: 1fr 40px;
+	grid-template-areas:
+		"history"
+		"input"
+	;
+	color: white;
+	border-bottom: 5px solid black;
+}
+
+.keypad, .display, .science .key {
+	position: relative;
+	height: 100%;
+	width: 100%;
+}
+
+.key {
+	background-color: #ccc;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.history {
+	@include fill;
+	grid-area: history;
+	overflow: scroll;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-content: flex-start;
+}
+
+.input {
+	grid-area: input;
+	text-align: right;
+	font-size: 24px;
+	padding: 0 10px;
+	overflow: auto;
+}
+
+@media (orientation: landscape) {
+	.calculator {
+		grid-template-rows: 1fr 1fr;
+		grid-template-columns: 3fr 5fr;
+		grid-template-areas:
+			"display display"
+			"science keypad"
+		;
+	}
+
+	.science {
+		display: grid;
+	}
+
+	.keypad {
+		grid-template-rows: 1fr 1fr 1fr;
+		grid-template-columns: 2fr 2fr 2fr 2fr 2fr;
+		grid-template-areas:
+			"key-7 key-8 key-9 key-0 key-clear"
+			"key-4 key-5 key-6 key-plus key-enter"
+			"key-1 key-2 key-3 key-d key-enter"
+		;
+
+		.key[data-key="minus"] {
+			display: none;
+		}
+	}
+}
+
+.key[data-key="1"] { grid-area: key-1; }
+.key[data-key="2"] { grid-area: key-2; }
+.key[data-key="3"] { grid-area: key-3; }
+.key[data-key="4"] { grid-area: key-4; }
+.key[data-key="5"] { grid-area: key-5; }
+.key[data-key="6"] { grid-area: key-6; }
+.key[data-key="7"] { grid-area: key-7; }
+.key[data-key="8"] { grid-area: key-8; }
+.key[data-key="9"] { grid-area: key-9; }
+.key[data-key="0"] { grid-area: key-0; }
+.key[data-key="plus"] { grid-area: key-plus; }
+.key[data-key="minus"] { grid-area: key-minus; }
+.key[data-key="d"] { grid-area: key-d; }
+.key[data-key="enter"] { grid-area: key-enter; }
+.key[data-key="clear"] { grid-area: key-clear; }
+
+.key[data-key="x"] { grid-area: key-exploding; }
+.key[data-key="k"] { grid-area: key-keep; }
+.key[data-key="r"] { grid-area: key-drop; }
+.key[data-key="h"] { grid-area: key-highest; }
+.key[data-key="m"] { grid-area: key-middle; }
+.key[data-key="l"] { grid-area: key-lowest; }
+.key[data-key="delete"] { grid-area: key-delete; }
+.key[data-key="help"] { grid-area: key-help; display: none }
+
+.result {
+	padding: 5px 20px;
+
+	.result--explanation {
+		line-height: 20px;
+	}
+
+	.result--sum {
+		font-weight: bold;
+		font-size: 20px;
+	}
+}
