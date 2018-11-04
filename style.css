@@ -21,7 +21,8 @@ html, body {
   display: grid;
   column-gap: 5px;
   row-gap: 5px;
-  background-color: black; }
+  background-color: black;
+  border: 5px solid black; }
 
 .keypad {
   grid-area: keypad;
@@ -34,7 +35,8 @@ html, body {
   grid-area: science;
   grid-template-rows: 1fr 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-areas: "key-keep key-highest key-exploding" "key-keep key-middle key-minus" "key-drop key-lowest key-delete"; }
+  grid-template-areas: "key-keep key-highest key-exploding" "key-keep key-middle key-minus" "key-drop key-lowest key-delete";
+  border-right: 0; }
   .science .key[data-key="minus"] {
     grid-area: key-minus; }
 
@@ -44,8 +46,7 @@ html, body {
   display: grid;
   grid-template-rows: 1fr 40px;
   grid-template-areas: "history" "input";
-  color: white;
-  border-bottom: 5px solid black; }
+  color: white; }
 
 .keypad, .display, .science .key {
   position: relative;
@@ -56,7 +57,19 @@ html, body {
   background-color: #ccc;
   display: flex;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  border-radius: 5px; }
+  .key[data-key="enter"] {
+    background-color: #4a4; }
+  .key[data-key="clear"], .key[data-key="delete"] {
+    background-color: #a44; }
+  .key[data-key="d"], .key[data-key="plus"], .key[data-key="minus"] {
+    background-color: #444;
+    color: white; }
+  .key[data-key="x"] {
+    background-color: #ABAB44; }
+  .key[data-key="k"], .key[data-key="r"], .key[data-key="h"], .key[data-key="m"], .key[data-key="l"] {
+    background-color: #AB44AB; }
 
 .history {
   position: absolute;
@@ -90,7 +103,8 @@ html, body {
   .keypad {
     grid-template-rows: 1fr 1fr 1fr;
     grid-template-columns: 2fr 2fr 2fr 2fr 2fr;
-    grid-template-areas: "key-7 key-8 key-9 key-0 key-clear" "key-4 key-5 key-6 key-plus key-enter" "key-1 key-2 key-3 key-d key-enter"; }
+    grid-template-areas: "key-7 key-8 key-9 key-0 key-clear" "key-4 key-5 key-6 key-plus key-enter" "key-1 key-2 key-3 key-d key-enter";
+    border-left: 0; }
     .keypad .key[data-key="minus"] {
       display: none; } }
 .key[data-key="1"] {

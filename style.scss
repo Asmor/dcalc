@@ -1,3 +1,5 @@
+$standard-border: 5px solid black;
+
 * {
 	padding: 0;
 	margin: 0;
@@ -39,6 +41,7 @@ html, body {
 	column-gap: 5px;
 	row-gap: 5px;
 	background-color: black;
+	border: $standard-border;
 }
 
 .keypad {
@@ -67,6 +70,8 @@ html, body {
 	.key[data-key="minus"] {
 		grid-area: key-minus;
 	}
+
+	border-right: 0;
 }
 
 .display {
@@ -79,7 +84,6 @@ html, body {
 		"input"
 	;
 	color: white;
-	border-bottom: 5px solid black;
 }
 
 .keypad, .display, .science .key {
@@ -93,6 +97,36 @@ html, body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	border-radius: 5px;
+
+	&[data-key="enter"] {
+		background-color: #4a4;
+	}
+
+	&[data-key="clear"],
+	&[data-key="delete"] {
+		background-color: #a44;
+	}
+
+	&[data-key="d"],
+	&[data-key="plus"],
+	&[data-key="minus"] {
+		background-color: #444;
+		color: white;
+	}
+
+	&[data-key="x"] {
+		background-color: #ABAB44;
+	}
+
+	&[data-key="k"],
+	&[data-key="r"],
+	&[data-key="h"],
+	&[data-key="m"],
+	&[data-key="l"] {
+		background-color: #AB44AB;
+	}
+	// &[data-key="help"]
 }
 
 .history {
@@ -139,8 +173,11 @@ html, body {
 		.key[data-key="minus"] {
 			display: none;
 		}
+
+		border-left: 0;
 	}
 }
+
 
 .key[data-key="1"] { grid-area: key-1; }
 .key[data-key="2"] { grid-area: key-2; }
